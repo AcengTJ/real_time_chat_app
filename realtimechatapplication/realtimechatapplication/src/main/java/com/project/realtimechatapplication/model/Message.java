@@ -4,10 +4,12 @@
  */
 package com.project.realtimechatapplication.model;
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
@@ -20,12 +22,16 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Document(collection = "messages")
 public class Message {
+    @Id
+    private  String id;
+
     private MsgType type;
 
     private String content;
 
     private String sender;
 
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime timestamp;
 }
